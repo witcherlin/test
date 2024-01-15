@@ -3,7 +3,7 @@ import { Endpoint } from '@core/utils/fetch';
 
 const todosStorage = {
   todos: [
-    { id: 1, title: 'Todo 1', completed: true, createdAt: new Date(2024, 0, 1, 20, 30).getTime() },
+    { id: 1, title: 'Todo 1', completed: true, createdAt: new Date(2024, 0, 1, 12, 30).getTime() },
     { id: 2, title: 'Todo 2', completed: true, createdAt: new Date(2024, 0, 1, 16, 22).getTime() },
     { id: 3, title: 'Todo 3', completed: true, createdAt: new Date(2024, 0, 2, 16, 31).getTime() },
     { id: 4, title: 'Todo 4', completed: true, createdAt: new Date(2024, 0, 5, 11, 30).getTime() },
