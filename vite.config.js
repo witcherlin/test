@@ -6,12 +6,6 @@ import react from '@vitejs/plugin-react';
 import tsConfig from './tsconfig.json';
 
 export default defineConfig({
-  preview: {
-    host: true,
-  },
-  server: {
-    host: true,
-  },
   resolve: {
     alias: Object.entries(tsConfig.compilerOptions.paths).map(
       ([key, [value]]) => ({
