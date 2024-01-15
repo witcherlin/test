@@ -1,0 +1,30 @@
+.input {
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: middle;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 1px solid #e1e1e1;
+  border-radius: 0;
+  background-color: #ffffff;
+  color: #2563eb;
+  appearance: none;
+  user-select: none;
+  transition: background-color, color 150ms ease-in;
+
+  &:hover {
+    color: #1d4ed8;
+    cursor: pointer;
+  }
+
+  &:checked {
+    border-color: transparent;
+    background-color: currentColor;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    background-origin: border-box;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 16 12'%3E%3Cpath stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M1 5.917 5.724 10.5 15 1.5'/%3E%3C/svg%3E");
+  }
+}

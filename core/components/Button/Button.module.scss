@@ -1,0 +1,29 @@
+.button {
+  display: inline-block;
+  flex-shrink: 0;
+  padding: 8px;
+  border: none;
+  border-radius: 0;
+  color: #ffffff;
+  transition: background-color 150ms ease-in;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &--primary {
+    background-color: #2563eb;
+
+    &:hover {
+      background-color: #1d4ed8;
+    }
+  }
+
+  &--danger {
+    background-color: #dc2626;
+
+    &:hover {
+      background-color: #b91c1c;
+    }
+  }
+}

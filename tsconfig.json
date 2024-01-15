@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "es2020",
+    "lib": ["es2020", "dom", "dom.iterable"],
+
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": false,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "esModuleInterop": false,
+    "skipLibCheck": true,
+    "allowJs": false,
+    "jsx": "react-jsx",
+
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+
+    "baseUrl": "./",
+    "paths": {
+      "@core/*": ["./core/*"],
+      "@/*": ["./src/*"]
+    },
+
+    "noEmit": true
+  },
+  "include": ["src", "lib/helpers", "lib/fixtures", "lib/services", "lib/types", "lib/utils"]
+}
