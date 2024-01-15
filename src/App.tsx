@@ -1,25 +1,21 @@
 import { FormEvent, useState } from 'react';
 
 import { TextInput, CheckBoxInput, SelectInput, Button } from '@core/components';
-import {
-  useGetTodosQuery,
-  useCreateTodoMutation,
-  useUpdateTodoMutation,
-  useDeleteTodoMutation,
-} from '@core/services/todos';
+import { useGetTodosQuery, useCreateTodoMutation, useUpdateTodoMutation, useDeleteTodoMutation } from '@core/services/todos';
 import { TodoType } from '@core/types/todos';
 
 import styles from './App.module.scss';
 
 /* *** */
 
-function chunk<T>(arr: T[], size: number): T[] {
-  console.log(arr, size);
+function chunk<T>(arr: T[], size: number): T[][] {
   return [];
 }
 
-console.log(chunk([1, 2, 3, 4, 5], 1)); // [[1], [2], [3], [4], [5]]
-console.log(chunk([1, 2, 3, 4, 5], 3)); // [[1, 2, 3], [4, 5]]
+console.log(chunk([1, 2, 3, 4, 5, 6], 1)); // [[1], [2], [3], [4], [5], [6]]
+console.log(chunk([1, 2, 3, 4, 5, 6], 2)); // [[1, 2], [3, 4], [5, 6]]
+console.log(chunk([1, 2, 3, 4, 5, 6], 3)); // [[1, 2, 3], [4, 5, 6]]
+console.log(chunk([1, 2, 3, 4, 5, 6], 4)); // [[1, 2, 3, 4], [5, 6]]
 
 /* *** */
 
@@ -59,9 +55,7 @@ function TodoForm({ mode, todo, onCreate, onUpdate, onDelete }: TodoFormProps) {
         {mode === 'edit' && (
           <>
             <Button onClick={handleUpdate}>update</Button>
-            <Button variant="danger" onClick={handleDelete}>
-              delete ?{/* cancel (10) */}
-            </Button>
+            <Button variant="danger" onClick={handleDelete}>delete ? {/* cancel (9) */}</Button>
           </>
         )}
       </div>
@@ -75,17 +69,11 @@ export function App() {
   const [search, setSearch] = useState('');
   const [sort, setSort] = useState('asc');
 
-  const { todos } = useGetTodosQuery(
-    {
-      search,
-      sort,
-    },
-    {
-      selectFromResult: ({ data }) => ({
-        todos: data || [],
-      }),
-    },
-  );
+  const { todos } = useGetTodosQuery({ search, sort }, {
+    selectFromResult: ({ data }) => ({
+      todos: data || [],
+    }),
+  });
 
   const [createTodo] = useCreateTodoMutation();
   const [updateTodo] = useUpdateTodoMutation();
@@ -108,7 +96,6 @@ export function App() {
             <TodoForm
               mode="edit"
               todo={todo}
-              // TODO: Fix
               onCreate={() => {}}
               onUpdate={updateTodo}
               onDelete={deleteTodo}
@@ -120,7 +107,6 @@ export function App() {
       <div className={styles.footer}>
         <TodoForm
           mode="new"
-          // TODO: Fix
           onCreate={createTodo}
           onUpdate={() => {}}
           onDelete={() => {}}
