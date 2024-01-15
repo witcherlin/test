@@ -20,8 +20,6 @@ export const fetch = async (
     (endpoint) => regexp(endpoint.url).test(url.pathname) && (endpoint.method || 'GET') === method,
   );
 
-  console.log(method, url.href, endpoint ? '(fake)' : '(real)');
-
   if (!endpoint) {
     return globalThis.fetch(input, init);
   }

@@ -1,8 +1,10 @@
 import { FormEvent, useState } from 'react';
 
+import logoImage from '@core/assets/logo.png';
 import { TextInput, CheckBoxInput, SelectInput, Button } from '@core/components';
-import { useGetTodosQuery, useCreateTodoMutation, useUpdateTodoMutation, useDeleteTodoMutation } from '@core/services/todos';
-import { TodoType } from '@core/types/todos';
+import { useGetTodosQuery, useCreateTodoMutation, useUpdateTodoMutation, useDeleteTodoMutation } from '@core/services';
+import { TodoType } from '@core/types';
+import { delay } from '@core/utils';
 
 import styles from './App.module.scss';
 
@@ -16,6 +18,17 @@ console.log(chunk([1, 2, 3, 4, 5, 6], 1)); // [[1], [2], [3], [4], [5], [6]]
 console.log(chunk([1, 2, 3, 4, 5, 6], 2)); // [[1, 2], [3, 4], [5, 6]]
 console.log(chunk([1, 2, 3, 4, 5, 6], 3)); // [[1, 2, 3], [4, 5, 6]]
 console.log(chunk([1, 2, 3, 4, 5, 6], 4)); // [[1, 2, 3, 4], [5, 6]]
+
+function limit<T, U extends unknown[]>(fn: (...args: U) => T, time: number) {
+  return (...args: U) => {
+    return fn(...args);
+  };
+}
+
+limit(delay, 100)(10).then(console.log).catch(console.error); // Done
+limit(delay, 100)(50).then(console.log).catch(console.error); // Done
+limit(delay, 100)(150).then(console.log).catch(console.error); // Error: Time Limit Exceeded
+limit(delay, 100)(300).then(console.log).catch(console.error); // Error: Time Limit Exceeded
 
 /* *** */
 
@@ -54,8 +67,8 @@ function TodoForm({ mode, todo, onCreate, onUpdate, onDelete }: TodoFormProps) {
 
         {mode === 'edit' && (
           <>
-            <Button onClick={handleUpdate}>update</Button>
-            <Button variant="danger" onClick={handleDelete}>delete ? {/* cancel (9) */}</Button>
+            <Button onClick={handleUpdate}>save</Button>
+            <Button variant="danger" onClick={handleDelete}>delete ?! {/* cancel (9) */}</Button>
           </>
         )}
       </div>
@@ -82,8 +95,11 @@ export function App() {
   return (
     <div className={styles.layout}>
       <div className={styles.header}>
-        <div className={styles.header__title}>
-          <h1 className={styles.header__title__heading}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h1>
+        <div className={styles.header__content}>
+          <div className={styles.header__content__left}>
+            <img className={styles.header__content__logo} src={logoImage} alt="" />
+            <span className={styles.header__content__heading}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+          </div>
           <SelectInput options={['asc', 'desc']} value={sort} onChange={setSort} />
         </div>
 

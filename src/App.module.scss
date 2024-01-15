@@ -20,14 +20,26 @@
   padding: 16px;
   background-color: #111111;
 
-  &__title {
+  &__content {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 
+    &__left {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    &__logo {
+      width: 40px;
+      height: 40px;
+    }
+
     &__heading {
-      margin: 0;
+      font-size: 32px;
+      font-weight: 600;
     }
   }
 }
