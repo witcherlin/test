@@ -13,6 +13,16 @@ import styles from './App.module.scss';
 
 /* *** */
 
+function chunk<T>(arr: T[], size: number): T[] {
+  console.log(arr, size);
+  return [];
+}
+
+console.log(chunk([1, 2, 3, 4, 5], 1)); // [[1], [2], [3], [4], [5]]
+console.log(chunk([1, 2, 3, 4, 5], 3)); // [[1, 2, 3], [4, 5]]
+
+/* *** */
+
 type TodoFormProps = {
   mode: 'new' | 'edit';
   todo?: TodoType;
