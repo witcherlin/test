@@ -2,10 +2,12 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  gap: 8px;
 
   &__actions {
     display: flex;
     flex-direction: row;
+    gap: 4px;
   }
 }
 
@@ -51,6 +53,10 @@
   &__item {
     padding: 8px;
     background-color: #e1e1e1;
+
+    &:nth-child(even) {
+      background-color: #eaeaea;
+    }
   }
 }
 
