@@ -53,9 +53,9 @@ function TodoForm({ mode, todo, onCreate, onUpdate, onDelete }: TodoFormProps) {
     });
   };
 
-  const handleUpdate = () => (todo ? onUpdate(todo) : undefined);
+  const handleUpdate = () => todo && onUpdate({ ...todo, title, completed });
 
-  const handleDelete = () => (todo ? onDelete(todo) : undefined);
+  const handleDelete = () => todo && onDelete(todo);
 
   return (
     <form className={styles.todoForm} onSubmit={handleCreate}>
