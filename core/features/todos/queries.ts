@@ -11,7 +11,7 @@ export function useGetTodosQuery(params: GetTodosParams) {
     placeholderData: keepPreviousData,
   });
 
-  if (queryResult.isPlaceholderData) {
+  if (queryResult.dataUpdatedAt) {
     // trigger getter for correct work placeholderData
   }
 
