@@ -5,11 +5,17 @@ import { GetTodosParams, getTodos, createTodo, updateTodo, deleteTodo } from './
 /* *** */
 
 export function useGetTodosQuery(params: GetTodosParams) {
-  return useQuery({
+  const queryResult = useQuery({
     queryKey: ['todos', params] as const,
     queryFn: () => getTodos(params),
     placeholderData: keepPreviousData,
   });
+
+  if (queryResult.isPlaceholderData) {
+    // trigger getter for correct work placeholderData
+  }
+
+  return queryResult;
 }
 
 export function useCreateTodoMutation() {

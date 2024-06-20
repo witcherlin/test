@@ -34,14 +34,16 @@ export async function getTodos({ search, sort }: GetTodosParams): Promise<GetTod
 
   try {
     todos = JSON.parse(localStorage.getItem(todosKey) || '') as GetTodosData;
-  } catch (err) {}
+  } catch (err) {
+    // skip
+  }
 
   if (search) {
-    return todos.filter((todo) => todo.title.toLowerCase().includes(search.toLowerCase()));
+    todos = todos.filter((todo) => todo.title.toLowerCase().includes(search.toLowerCase()));
   }
 
   if (sort) {
-    return todos.sort((a, b) => (sort === 'asc' ? a.createdAt - b.createdAt : b.createdAt - a.createdAt));
+    todos = todos.sort((a, b) => (sort === 'asc' ? a.createdAt - b.createdAt : b.createdAt - a.createdAt));
   }
 
   return todos;
