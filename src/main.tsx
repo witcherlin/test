@@ -1,19 +1,14 @@
 import './main.scss';
 
-import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { Provider } from 'react-redux';
-
-import { createStore } from '@core/helpers/createStore';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import { App } from './App';
 
-const store = createStore();
+const queryClient = new QueryClient();
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </StrictMode>,
+  <QueryClientProvider client={queryClient}>
+    <App />
+  </QueryClientProvider>,
 );

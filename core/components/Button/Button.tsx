@@ -17,7 +17,10 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
   return (
     <button
       ref={ref}
-      className={clsx(styles.button, styles[`button${variant.charAt(0).toUpperCase() + variant.slice(1)}`])}
+      className={clsx(styles.button, {
+        [styles.buttonPrimary]: variant === 'primary',
+        [styles.buttonDanger]: variant === 'danger',
+      })}
       type={type}
       onClick={onClick}
     >

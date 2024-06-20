@@ -2,8 +2,7 @@ import { FormEvent, useState } from 'react';
 
 import logoImage from '@core/assets/logo.png';
 import { TextInput, CheckBoxInput, SelectInput, Button } from '@core/components';
-import { useGetTodosQuery, useCreateTodoMutation, useUpdateTodoMutation, useDeleteTodoMutation } from '@core/services';
-import { TodoType } from '@core/types';
+import { TodoType, useGetTodosQuery, useCreateTodoMutation, useUpdateTodoMutation, useDeleteTodoMutation } from '@core/features/todos';
 import { delay } from '@core/utils';
 
 import styles from './App.module.scss';
@@ -62,7 +61,7 @@ function TodoForm({ mode, todo, onCreate, onUpdate, onDelete }: TodoFormProps) {
       <TextInput placeholder="Title" value={title} onChange={setTitle} />
       <CheckBoxInput value={completed} onChange={setCompleted} />
 
-      <div className={styles.todoForm__actions}>
+      <div className={styles.todoFormActions}>
         {mode === 'new' && <Button type="submit">create</Button>}
 
         {mode === 'edit' && (
@@ -82,23 +81,24 @@ export function App() {
   const [search, setSearch] = useState('');
   const [sort, setSort] = useState('asc');
 
-  const { todos } = useGetTodosQuery({ search, sort }, {
-    selectFromResult: ({ data }) => ({
-      todos: data || [],
-    }),
+  const { isLoading, data: todos = [] } = useGetTodosQuery({
+    search,
+    sort,
   });
 
-  const [createTodo] = useCreateTodoMutation();
-  const [updateTodo] = useUpdateTodoMutation();
-  const [deleteTodo] = useDeleteTodoMutation();
+  const { mutate: createTodo } = useCreateTodoMutation();
+  const { mutate: updateTodo } = useUpdateTodoMutation();
+  const { mutate: deleteTodo } = useDeleteTodoMutation();
 
   return (
     <div className={styles.layout}>
       <div className={styles.header}>
-        <div className={styles.header__content}>
-          <div className={styles.header__content__left}>
-            <img className={styles.header__content__logo} src={logoImage} alt="" />
-            <span className={styles.header__content__heading}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+        <div className={styles.headerContent}>
+          <div className={styles.headerContentLeft}>
+            <img className={styles.headerContentLogo} src={logoImage} alt="" />
+            <span className={styles.headerContentHeading}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </span>
           </div>
           <SelectInput options={['asc', 'desc']} value={sort} onChange={setSort} />
         </div>
@@ -107,8 +107,10 @@ export function App() {
       </div>
 
       <div className={styles.content}>
+        {isLoading && <span>Loading...</span>}
+
         {todos.map((todo) => (
-          <div key={todo.id} className={styles.content__item}>
+          <div key={todo.id} className={styles.contentItem}>
             <TodoForm
               mode="edit"
               todo={todo}

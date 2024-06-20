@@ -7,11 +7,7 @@
   color: #ffffff;
   transition: background-color 150ms ease-in;
 
-  &:hover {
-    cursor: pointer;
-  }
-
-  &--primary {
+  &.buttonPrimary {
     background-color: #2563eb;
 
     &:hover {
@@ -19,11 +15,15 @@
     }
   }
 
-  &--danger {
+  &.buttonDanger {
     background-color: #dc2626;
 
     &:hover {
       background-color: #b91c1c;
     }
+  }
+
+  &:hover {
+    cursor: pointer;
   }
 }

@@ -11,7 +11,9 @@
   color: #2563eb;
   appearance: none;
   user-select: none;
-  transition: background-color, color 150ms ease-in;
+  transition:
+    background-color,
+    color 150ms ease-in;
 
   &:hover {
     color: #1d4ed8;
