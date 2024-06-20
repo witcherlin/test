@@ -24,7 +24,7 @@ export function useCreateTodoMutation() {
   return useMutation({
     mutationFn: createTodo,
     onSuccess: () => {
-      queryClient.invalidateQueries({
+      queryClient.refetchQueries({
         queryKey: ['todos'],
       });
     },
@@ -37,7 +37,7 @@ export function useUpdateTodoMutation() {
   return useMutation({
     mutationFn: updateTodo,
     onSuccess: () => {
-      queryClient.invalidateQueries({
+      queryClient.refetchQueries({
         queryKey: ['todos'],
       });
     },
@@ -50,7 +50,7 @@ export function useDeleteTodoMutation() {
   return useMutation({
     mutationFn: deleteTodo,
     onSuccess: () => {
-      queryClient.invalidateQueries({
+      queryClient.refetchQueries({
         queryKey: ['todos'],
       });
     },
