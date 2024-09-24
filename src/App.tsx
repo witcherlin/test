@@ -62,10 +62,6 @@ function TodoForm({ mode, todo, onCreate, onUpdate, onDelete }: TodoFormProps) {
 
   const handleDelete = () => todo && onDelete(todo);
 
-  useEffect(() => {
-    setCompleted(todo?.completed || false);
-  }, [todo]);
-
   return (
     <form className={styles.todoForm} onSubmit={handleCreate}>
       <TextInput placeholder="Title" value={title} onChange={setTitle} />
