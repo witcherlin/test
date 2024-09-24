@@ -1,8 +1,14 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 
 import logoImage from '@core/assets/logo.png';
 import { TextInput, CheckBoxInput, SelectInput, Button } from '@core/components';
-import { TodoType, useGetTodosQuery, useCreateTodoMutation, useUpdateTodoMutation, useDeleteTodoMutation } from '@core/features/todos';
+import {
+  TodoType,
+  useGetTodosQuery,
+  useCreateTodoMutation,
+  useUpdateTodoMutation,
+  useDeleteTodoMutation,
+} from '@core/features/todos';
 import { delay } from '@core/utils';
 
 import styles from './App.module.scss';
@@ -55,6 +61,10 @@ function TodoForm({ mode, todo, onCreate, onUpdate, onDelete }: TodoFormProps) {
   const handleUpdate = () => todo && onUpdate({ ...todo, title, completed });
 
   const handleDelete = () => todo && onDelete(todo);
+
+  useEffect(() => {
+    setCompleted(todo?.completed || false);
+  }, [todo]);
 
   return (
     <form className={styles.todoForm} onSubmit={handleCreate}>
@@ -114,7 +124,8 @@ export function App() {
             <TodoForm
               mode="edit"
               todo={todo}
-              onCreate={() => {}}
+              onCreate={() => {
+              }}
               onUpdate={updateTodo}
               onDelete={deleteTodo}
             />
@@ -126,8 +137,10 @@ export function App() {
         <TodoForm
           mode="new"
           onCreate={createTodo}
-          onUpdate={() => {}}
-          onDelete={() => {}}
+          onUpdate={() => {
+          }}
+          onDelete={() => {
+          }}
         />
       </div>
     </div>
