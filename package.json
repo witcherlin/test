@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "tsc",
     "dev": "vite",
-    "build": "yarn lint && vite build",
+    "build": "npm run lint && vite build",
     "start": "vite preview"
   },
   "dependencies": {
