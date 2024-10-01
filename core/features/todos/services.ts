@@ -30,11 +30,11 @@ export type GetTodosData = TodoType[];
 export async function getTodos({ search, sort }: GetTodosParams): Promise<GetTodosData> {
   await delay(100 + Math.random() * 200);
 
-  let todos = todosData;
+  let todos = JSON.parse(JSON.stringify(todosData)) as GetTodosData;
 
   try {
     todos = JSON.parse(localStorage.getItem(todosKey) || '') as GetTodosData;
-  } catch (err) {
+  } catch {
     // skip
   }
 

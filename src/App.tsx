@@ -2,7 +2,13 @@ import { FormEvent, useState, useEffect } from 'react';
 
 import logoImage from '@core/assets/logo.png';
 import { TextInput, CheckBoxInput, SelectInput, Button } from '@core/components';
-import { TodoType, useGetTodosQuery, useCreateTodoMutation, useUpdateTodoMutation, useDeleteTodoMutation } from '@core/features/todos';
+import {
+  TodoType,
+  useGetTodosQuery,
+  useCreateTodoMutation,
+  useUpdateTodoMutation,
+  useDeleteTodoMutation,
+} from '@core/features/todos';
 import { delay } from '@core/utils';
 
 import styles from './App.module.scss';
@@ -55,10 +61,6 @@ function TodoForm({ mode, todo, onCreate, onUpdate, onDelete }: TodoFormProps) {
   const handleUpdate = () => todo && onUpdate({ ...todo, title, completed });
 
   const handleDelete = () => todo && onDelete(todo);
-
-  useEffect(() => {
-    console.log('TodoForm.todo', todo?.completed);
-  }, [todo]);
 
   return (
     <form className={styles.todoForm} onSubmit={handleCreate}>
