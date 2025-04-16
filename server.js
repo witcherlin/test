@@ -27,7 +27,6 @@ async function main() {
 
       const { root } = await render(url);
 
-      console.log(template.replace(`<!-- root-outlet -->`, root));
       res
         .status(200)
         .set({ 'Content-Type': 'text/html' })
