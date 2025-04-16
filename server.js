@@ -28,7 +28,9 @@ async function main() {
 
       res
         .status(200)
-        .set({ 'Content-Type': 'text/html' })
+        .set({
+          'Content-Type': 'text/html'
+        })
         .end(
           template.replace(`<!-- root-outlet -->`, root)
         );
