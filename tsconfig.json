@@ -25,5 +25,5 @@
 
     "noEmit": true
   },
-  "include": ["src", "lib/helpers", "lib/fixtures", "lib/services", "lib/types", "lib/utils"]
+  "include": ["core", "src"]
 }
