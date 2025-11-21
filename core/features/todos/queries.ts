@@ -11,8 +11,10 @@ export function useGetTodosQuery(params: GetTodosParams) {
     placeholderData: keepPreviousData,
   });
 
+  // TODO: Seems fixed in latest version of react-query
+  // Trigger getter for correct work placeholderData
   if (queryResult.dataUpdatedAt) {
-    // trigger getter for correct work placeholderData
+    // skip
   }
 
   return queryResult;
